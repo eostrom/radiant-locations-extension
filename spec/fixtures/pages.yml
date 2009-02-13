@@ -1,28 +1,20 @@
+DEFAULTS: &DEFAULTS
+  created_by: rita
+  published_at: <%= 1.day.ago %>
+
 home:
   title: First Fridays
   slug: /
   breadcrumb: Home
   class_name: Page
-  virtual: f
-  lock_version: 0
-  created_by_id: rita
-  description: 
-  status_id: 1
-  published_at: <%= Time.now %>
-  keywords: 
+  <<: *DEFAULTS
 
 venues:
   title: Venues
   slug: venues
   breadcrumb: Venues
   class_name: Page
-  virtual: f
-  lock_version: 0
-  created_by_id: rita
-  description: 
-  status_id: 1
-  published_at: <%= Time.now %>
-  keywords: 
+  <<: *DEFAULTS
   parent: home
 
 anno-domini:
@@ -30,11 +22,5 @@ anno-domini:
   slug: anno-domini
   breadcrumb: Anno Domini
   class_name: Page
-  virtual: f
-  lock_version: 0
-  created_by_id: rita
-  description: 
-  status_id: 1
-  published_at: <%= Time.now %>
-  keywords: 
+  <<: *DEFAULTS
   parent: venues
