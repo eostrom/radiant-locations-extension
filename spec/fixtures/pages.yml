@@ -17,7 +17,7 @@ venues:
   <<: *DEFAULTS
   parent: home
 
-anno-domini:
+anno_domini:
   title: Anno Domini
   slug: anno-domini
   breadcrumb: Anno Domini
