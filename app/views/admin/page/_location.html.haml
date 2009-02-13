@@ -1,0 +1,6 @@
+- @location = @page.location || Location.new
+- fields_for('page[location]', @location) do |fields|
+  = fields.label :address
+  = fields.text_field :address
+  = fields.label :coordinates
+  = fields.text_field :coordinates, :size => 8, :disabled => true

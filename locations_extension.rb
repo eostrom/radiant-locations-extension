@@ -16,6 +16,8 @@ class LocationsExtension < Radiant::Extension
       has_one :location, :dependent => :destroy # one, for now...
       validates_associated :location
     end
+    
+    admin.page.edit.add(:parts_bottom, 'location')
   end
   
   def deactivate
