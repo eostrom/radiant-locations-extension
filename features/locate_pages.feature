@@ -8,7 +8,8 @@ Feature: Locate pages
     When I visit the "Anno Domini" admin page
     And I fill in "Address" with "366 So. First Street, San Jose, CA 95113"
     And I press "Save and Continue Editing"
-    Then I should see "37.331061 N, 121.886079 W"
+    Then I should see "37[^a-z]*N"
+    And I should see "121[^a-z]*W"
 
   Scenario: Accept the geocoder's spelling of an address
 
