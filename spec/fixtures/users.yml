@@ -1,0 +1,7 @@
+<% require 'digest/sha1' %>
+<% @salt = Digest::SHA1.hexdigest('0') %>
+
+rita:
+  login: rita
+  salt: <%= @salt %>
+  password: <%= Digest::SHA1.hexdigest("--#{@salt}--rita--") %>
