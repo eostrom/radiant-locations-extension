@@ -12,6 +12,10 @@ class LocationsExtension < Radiant::Extension
   
   def activate
     # admin.tabs.add "Locations", "/admin/locations", :after => "Layouts", :visibility => [:all]
+    Page.class_eval do
+      has_one :location, :dependent => :destroy # one, for now...
+      validates_associated :location
+    end
   end
   
   def deactivate
