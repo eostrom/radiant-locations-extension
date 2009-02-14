@@ -8,7 +8,7 @@ describe '_location partial' do
   end
   
   it "should render blank address and coordinates if the page has no location" do
-    assigns[:page].should_receive(:location).and_return(nil)
+    assigns[:page].should_receive(:location).at_least(:once).and_return(nil)
 
     render :partial => '/admin/page/location'
     
@@ -20,7 +20,7 @@ describe '_location partial' do
     location = mock_model(Location)
     location.should_receive(:address).and_return(@address)
     location.should_receive(:coordinates).and_return(@coordinates)
-    assigns[:page].should_receive(:location).and_return(location)
+    assigns[:page].should_receive(:location).at_least(:once).and_return(location)
 
     render :partial => '/admin/page/location'
 
@@ -32,7 +32,7 @@ describe '_location partial' do
     location = mock_model(Location)
     location.should_receive(:address).and_return(@address)
     location.should_receive(:coordinates).and_return(nil)
-    assigns[:page].should_receive(:location).and_return(location)
+    assigns[:page].should_receive(:location).at_least(:once).and_return(location)
 
     render :partial => '/admin/page/location'
 
