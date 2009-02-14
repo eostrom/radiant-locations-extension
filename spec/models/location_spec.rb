@@ -77,12 +77,4 @@ describe Location do
     geocoder_fail!
     @page.should_not be_valid
   end
-
-protected
-  
-  def geocoder_fail!
-    @geocoder.stub!(:geocode).and_return(
-      mock('geo', :success => false, :lat => nil, :lng => nil)
-    )
-  end
 end

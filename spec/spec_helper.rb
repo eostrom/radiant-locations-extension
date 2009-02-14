@@ -18,6 +18,14 @@ if File.directory?(File.dirname(__FILE__) + "/matchers")
   Dir[File.dirname(__FILE__) + "/matchers/*.rb"].each {|file| require file }
 end
 
+module GeokitSpecHelper
+  def geocoder_fail!
+    @geocoder.stub!(:geocode).and_return(
+      mock('geo', :success => false, :lat => nil, :lng => nil)
+    )
+  end
+end
+
 Spec::Runner.configure do |config|
   # config.use_transactional_fixtures = true
   # config.use_instantiated_fixtures  = false
@@ -34,4 +42,5 @@ Spec::Runner.configure do |config|
   #
   # If you declare global fixtures, be aware that they will be declared
   # for all of your examples, even those that don't use them.
+  config.include(GeokitSpecHelper, :type => :models)
 end
