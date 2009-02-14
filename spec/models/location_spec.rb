@@ -32,6 +32,14 @@ describe Location do
     geocoder_fail!
     @location.should_not be_valid
   end
+
+  it "should bypass the geocoder if the address is blank" do
+    geocoder_skip!
+    @location.address = ""
+    @location.should be_valid
+    @location.latitude.should == nil
+    @location.longitude.should == nil
+  end
   
   it "should look up coordinates if the Location is new" do
     @geocoder.should_receive(:geocode).with(@location.address).and_return(

@@ -22,4 +22,8 @@ module GeokitSpecHelper
   def geocoder_fail!
     @geocoder.should_receive(:geocode).at_least(:once).and_return(failure)
   end
+  
+  def geocoder_skip!
+    @geocoder.should_not_receive(:geocode)
+  end
 end

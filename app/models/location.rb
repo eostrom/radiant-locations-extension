@@ -8,8 +8,10 @@ class Location < ActiveRecord::Base
   
   validates_presence_of :page
   
-  validates_inclusion_of :latitude, :in => -90..90
-  validates_inclusion_of :longitude, :in => -180..180
+  validates_inclusion_of :latitude, :in => -90..90, :allow_nil => true
+  validates_inclusion_of :longitude, :in => -180..180, :allow_nil => true
+  
+  validate :valid_address
   
   def coordinates
     return nil if !valid?
@@ -25,12 +27,11 @@ protected
   
   def geocode_address
     if address.blank?
-      errors.add(:address, "Address cannot be blank")
+      self.latitude = self.longitude = nil
     elsif new_record? || address_changed?
       # TODO: make choice of geocoder configurable
       geo = Geokit::Geocoders::GoogleGeocoder.geocode(address)
       self.latitude, self.longitude = geo.lat, geo.lng
-      errors.add(:address, "Couldn't find address") if !geo.success
     end
   end
   
@@ -40,6 +41,12 @@ protected
   end
   alias after_initialize remember_address
   
+  def valid_address
+    if !address.blank? && !(latitude && longitude)
+      errors.add(:address, "Couldn't find address")
+    end
+  end
+      
   def address_changed?
     # TODO: Radiant 0.7 (i.e., Rails 2.1.2) should make this unnecessary
     self.address != @unchanged_address
