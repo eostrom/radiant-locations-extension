@@ -14,7 +14,7 @@ class Location < ActiveRecord::Base
   validate :valid_address
   
   def coordinates
-    return nil if !valid?
+    return nil unless latitude && longitude
     
     # TODO: minutes and seconds?
     n_or_s = (latitude == 0 ? '' : (latitude > 0 ? ' N' : ' S'))

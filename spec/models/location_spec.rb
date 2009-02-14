@@ -74,8 +74,8 @@ describe Location do
     @location.coordinates.should match(/37.*121/)
   end
 
-  it "should render its coordinates as nil when invalid" do
-    geocoder_fail!
+  it "should render its coordinates as nil when blank" do
+    @location.latitude = @location.longitude = nil
     @location.coordinates.should == nil
   end
 end
