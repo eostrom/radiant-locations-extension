@@ -18,31 +18,7 @@ if File.directory?(File.dirname(__FILE__) + "/matchers")
   Dir[File.dirname(__FILE__) + "/matchers/*.rb"].each {|file| require file }
 end
 
-module GeokitSpecHelper
-  def success
-    mock('geo', :success => true, :lat => 37.331061, :lng => -121.886079)
-  end
-  
-  def failure
-    mock('geo', :success => false, :lat => nil, :lng => nil)
-  end
-  
-  def geocoder_succeed
-    @geocoder.stub!(:geocode).and_return(success)
-  end
-  
-  def geocoder_fail
-    @geocoder.stub!(:geocode).and_return(failure)
-  end
-  
-  def geocoder_succeed!
-    @geocoder.should_receive(:geocode).and_return(success)
-  end
-
-  def geocoder_fail!
-    @geocoder.should_receive(:geocode).and_return(failure)
-  end
-end
+require File.expand_path(File.dirname(__FILE__) + "/geokit_spec_helper")
 
 Spec::Runner.configure do |config|
   # config.use_transactional_fixtures = true
