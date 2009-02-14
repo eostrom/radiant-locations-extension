@@ -70,11 +70,4 @@ describe Location do
     geocoder_fail!
     @location.coordinates.should == nil
   end
-
-  it "should prevent its page from validating when invalid" do
-    @page.location = @location
-    @page.should be_valid
-    geocoder_fail!
-    @page.should_not be_valid
-  end
 end

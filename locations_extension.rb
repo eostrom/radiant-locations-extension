@@ -3,8 +3,8 @@
 
 class LocationsExtension < Radiant::Extension
   version "1.0"
-  description "Describe your extension here"
-  url "http://yourwebsite.com/locations"
+  description "Creates maps based on page locations"
+  url "http://github.com/eostrom/radiant-locations-extension"
   
   # define_routes do |map|
   #   map.connect 'admin/locations/:action', :controller => 'admin/locations'
@@ -12,10 +12,7 @@ class LocationsExtension < Radiant::Extension
   
   def activate
     # admin.tabs.add "Locations", "/admin/locations", :after => "Layouts", :visibility => [:all]
-    Page.class_eval do
-      has_one :location, :dependent => :destroy # one, for now...
-      validates_associated :location
-    end
+    Page.send(:include, WithLocation)
     
     admin.page.edit.add(:parts_bottom, 'location')
   end
