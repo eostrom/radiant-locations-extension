@@ -6,7 +6,7 @@ class Location < ActiveRecord::Base
   before_validation :geocode_address
   after_save :remember_address
   
-  validates_presence_of :page
+  validates_presence_of :page, :on => :update
   
   validates_inclusion_of :latitude, :in => -90..90, :allow_nil => true
   validates_inclusion_of :longitude, :in => -180..180, :allow_nil => true
