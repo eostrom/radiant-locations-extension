@@ -4,7 +4,7 @@ Feature: Locate pages
   I want to associate pages with locations
 
   Scenario: Successfully create a page with a location
-    Given I am logged in as "Rita"
+    Given I am logged in
     When I add a child to the "Venues" page
     And I fill in "Page Title" with "San Jose Museum of Quilts & Textiles"
     And I fill in "Slug" with "quilts-and-textiles"
@@ -15,8 +15,8 @@ Feature: Locate pages
     And I should see "121[^a-z]*W"
 
   Scenario: Successfully create a page without a location
-    Given I am logged in as "Rita"
-    When I add a child to the "First Fridays" page
+    Given I am logged in
+    When I add a child to the "Home" page
     And I fill in "Page Title" with "About"
     And I fill in "Slug" with "about"
     And I fill in "Breadcrumb" with "About"
@@ -24,7 +24,7 @@ Feature: Locate pages
     Then I should not see "Validation errors"
 
   Scenario: Successfully set a page's location by address
-    Given I am logged in as "Rita"
+    Given I am logged in
     When I visit the "Anno Domini" admin page
     And I fill in "Address" with "366 So. First Street, San Jose, CA 95113"
     And I press "Save and Continue Editing"
@@ -38,7 +38,7 @@ Feature: Locate pages
   Scenario: Successfully set a page's location by coordinates
 
   Scenario: Fail to set a page's location
-    Given I am logged in as "Rita"
+    Given I am logged in
     When I visit the "Anno Domini" admin page
     And I fill in "Address" with "auhy euh ser"
     And I press "Save and Continue Editing"

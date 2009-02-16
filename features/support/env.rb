@@ -4,10 +4,14 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../../../config/enviro
 require 'cucumber/rails/world'
 Cucumber::Rails.use_transactional_fixtures
 
-Fixtures.reset_cache  
-fixtures_folder = File.expand_path(File.dirname(__FILE__) + '/../../spec/fixtures')
-fixtures = Dir[File.join(fixtures_folder, '*.yml')].map {|f| File.basename(f, '.yml') }
-Fixtures.create_fixtures(fixtures_folder, fixtures)
+require 'scenarios'
+[
+  '../../../../radiant/spec/scenarios',
+  '../../spec/scenarios'
+].each do |path|
+  Scenarios::load_paths.unshift(File.expand_path(path, File.dirname(__FILE__)))
+end
+Scenarios::load :features
 
 require 'webrat'
 
