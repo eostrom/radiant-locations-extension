@@ -75,6 +75,8 @@ maps to a Radiant site.  Some significant differences between that
 location and this one are:
 
 * GME is ready to use; Locations is unfinished.
+* GME is built for Radiant 0.7; Locations is presently compatible
+  with 0.6.9.
 * In Locations, map markers are directly tied to pages on the site,
   and maps are meant to show sets of pages.  In GME, maps are
   independent of pages.  This gives you more freedom but, in some
