@@ -12,7 +12,8 @@ class LocationsExtension < Radiant::Extension
   
   def activate
     # admin.tabs.add "Locations", "/admin/locations", :after => "Layouts", :visibility => [:all]
-    Page.send(:include, WithLocation)
+    Page.send :include, WithLocation
+    Page.send :include, LocationTags
     
     admin.page.edit.add(:parts_bottom, 'location')
   end
