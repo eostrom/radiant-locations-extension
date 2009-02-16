@@ -13,6 +13,8 @@ class Location < ActiveRecord::Base
   
   validate :valid_address
   
+  delegate :blank?, :to => :address
+  
   def coordinates
     return nil unless latitude && longitude
     
